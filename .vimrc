@@ -28,7 +28,11 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'hashivim/vim-terraform'
 call vundle#end()            " required
+
+" Vim terraform 
+let g:terraform_fmt_on_save=1
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
