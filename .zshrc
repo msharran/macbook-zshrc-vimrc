@@ -1,8 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 alias goa='cd ~/go/src/goa-user-service'
+alias scat='~/work/supercat_server'
 alias flushdns='sudo killall -HUP mDNSResponder'
 alias cloudBeaver='docker run --name cloudbeaver --rm -ti -p 8080:8978 -v /var/cloudbeaver/workspace:/opt/cloudbeaver/workspace dbeaver/cloudbeaver:latest'
+alias dc='docker compose'
+alias d='docker'
+alias tf='terraform'
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/sharran.m/.oh-my-zsh"
 export GOPATH=$HOME/go
@@ -13,58 +18,21 @@ function awsroodat () {
 	export AWS_PROFILE=roodat; 
 }
 
-
 function awsfayvit () {
 	export AWS_PROFILE=fayvit; 
 }
-
 
 function awsdefault () {
 	export AWS_PROFILE=default; 
 }
 
-
 function awsrebecca () {
 	export AWS_PROFILE=rebecca; 
-}
-
-galias() {
-  cat<<EOD
-# FUNCTIONS
-gc -> gcm "*"
-gnew -> gcom "📦 New: *"
-gimp -> gcom "👌 Improve: *"
-gfix -> gcom "🐛 Fix: *"
-grlz -> gcom "🚀 Release: *"
-gdoc -> gcom "📖 Doc: *"
-gtst -> gcom "✅ Test: *"
-EOD
 }
 
 kp() {
     echo "killing port with command...\nfuser -k $1/tcp"
     fuser -k $1/tcp
-}
-gcom() {
-     gcmsg "$*"
-}
-gnew() {
-    gcom "📦 New: $*"
-}
-gimp() {
-    gcom  "👌 Improve: $*"
-}
-gfix() {
-     gcom "🐛 Fix: $*"
-}
-grlz() {
-    gcom "🚀 Release: $*"
-}
-gdoc() {
-    gcom "📖 Doc: $*"
-}
-gtst() {
-    gcom "✅ Test: $*"
 }
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

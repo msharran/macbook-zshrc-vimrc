@@ -28,16 +28,10 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'hashivim/vim-terraform'
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
-let g:terraform_binary_path="/usr/local/bin/terraform"
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 call vundle#end()            " required
 
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -47,7 +41,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+filetype plugin indent on    " required
 syntax on
+set autowrite
 "colo molokai
 set number
 set relativenumber
@@ -64,22 +60,9 @@ colorscheme PaperColor
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1
 
-" autocmd vimenter * ++nested colorscheme gruvbox
-"nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
-"nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
-"nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
-
-"nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
-"nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
-"nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-
 "GoLang
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-
-filetype plugin indent on
-
-set autowrite
 
 " Go syntax highlighting
 let g:go_highlight_fields = 1
@@ -112,6 +95,10 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
 " au filetype go inoremap <buffer> . .<C-x><C-o>
+
+" Ruby 
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
 
 " NerdTree configs
 let g:NERDTreeDirArrowExpandable = '▸'
