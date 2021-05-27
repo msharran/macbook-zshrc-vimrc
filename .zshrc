@@ -30,6 +30,10 @@ function awsrebecca () {
 	export AWS_PROFILE=rebecca; 
 }
 
+function awssupercat () {
+	export AWS_PROFILE=supercat; 
+}
+
 kp() {
     echo "killing port with command...\nfuser -k $1/tcp"
     fuser -k $1/tcp
@@ -132,3 +136,4 @@ source $ZSH/oh-my-zsh.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$PATH:$HOME/bin
