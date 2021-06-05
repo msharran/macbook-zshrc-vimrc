@@ -14,6 +14,10 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GO111MODULE=on
 
+function kns() {
+	kubectl config set-context --current --namespace="$1"
+}
+
 function awsroodat () {
 	export AWS_PROFILE=roodat; 
 }
@@ -32,6 +36,10 @@ function awsrebecca () {
 
 function awssupercat () {
 	export AWS_PROFILE=supercat; 
+}
+
+function awsbond () {
+	export AWS_PROFILE=bondaws; 
 }
 
 kp() {
