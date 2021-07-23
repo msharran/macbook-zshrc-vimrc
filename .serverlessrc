@@ -1,0 +1,27 @@
+{
+  "userId": "google-oauth2|100777677728284464118",
+  "frameworkId": "49b3ac80-75be-11eb-9b7f-c70cdf370a9b",
+  "trackingDisabled": false,
+  "meta": {
+    "created_at": 1614074571,
+    "updated_at": 1626631974
+  },
+  "users": {
+    "google-oauth2|100777677728284464118": {
+      "userId": "google-oauth2|100777677728284464118",
+      "name": "Sharran M",
+      "email": "sharran.murali@gmail.com",
+      "username": "sharranm",
+      "dashboard": {
+        "refreshToken": "dnpCzUDbq2_0w56MCaeew-8BaXbOrU5wNrqkjEY-iW0DQ",
+        "accessToken": "xLxUvaITkA9bG_t8ZXLFpSV9hAwRdWF4",
+        "idToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik56azVNREl5TVRnNFJqWTBORGswT0VJM1JrRXpORGN4UmtVMU1FWXdNemczT1VKQlFqRTBNZyJ9.eyJnaXZlbl9uYW1lIjoiU2hhcnJhbiIsImZhbWlseV9uYW1lIjoiTSIsIm5pY2tuYW1lIjoic2hhcnJhbi5tdXJhbGkiLCJuYW1lIjoiU2hhcnJhbiBNIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdnQ2hlRDNrZVkzcFhlOEVMbzV6WUktal8tdkZzSEIyOUlBc3hPRz1zOTYtYyIsImxvY2FsZSI6ImVuIiwidXBkYXRlZF9hdCI6IjIwMjEtMDctMThUMTc6NDc6NDYuNTkyWiIsImVtYWlsIjoic2hhcnJhbi5tdXJhbGlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXV0aC5zZXJ2ZXJsZXNzLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMDc3NzY3NzcyODI4NDQ2NDExOCIsImF1ZCI6IllBSE9HOHBhcGIxdGtyTHR0TlZvVk9TczRZTE9qck5qIiwiaWF0IjoxNjI2NjMwNDcwLCJleHAiOjE2Mjc0OTQ0NzB9.CsvuetIx8HqKtQvjgSF9AL45ptaDkBMDtYSkQXc_UkaEVppJeBRqyvzr-WbF5oS0Q2FdB4HDmyNV7wKvsLG1NtPFyruHfsOTFjZPRJOqb3eYFgHwXyfqP6eiDW2DDRzZyFOgUyTLwDWJzP2IWgOAvhaXCYKPYYIx07m5DJmK_yHTrwqwBLi4_B1SXnhxfhRkgAtPVfMUQr8KC9PEayj9vXQL5WtCT-jKQkjG18JuyaVRFvG_KqpYnPBQJTMeFxGnyefUTWlRatjoN0G679tpvt14eDl0H6cNp5zP9k_yRB3tqO9SrnBYa3fnaxKO0l8-M5gWiy6mxbuhDWUpsxk5qg",
+        "expiresAt": 86400,
+        "username": "sharranm",
+        "accessKeys": {
+          "sharranm": "AKfaxIfRoYs47lshgA0NCkoWsKFhpINWIyk8PXg2ZrrrR"
+        }
+      }
+    }
+  }
+}
