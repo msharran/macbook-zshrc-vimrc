@@ -1,3 +1,13 @@
+# After cloning follow these steps:
+
+- Install Vundle and Plug vim package managers.
+- Open Vim and run `:PluginInstall` and `:PlugInstall`
+- Install `Oh my zsh`
+- Change `Oh my zsh` path in `.zshrc` file
+- Install python3 and mac vim using `brew install python@3.9 && brew install macvim`
+- Commit the changes and push them to ignore local git status 
+
+
 # ~/.vimrc
 
 Vundle
@@ -11,3 +21,4 @@ Fugitive - git
 
 oh-my-zsh
 robby-russel theme
+
