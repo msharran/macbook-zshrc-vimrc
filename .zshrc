@@ -9,7 +9,7 @@ alias d='docker'
 alias tf='terraform'
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sharran.m/.oh-my-zsh"
+export ZSH="/Users/shmurali/.oh-my-zsh"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GO111MODULE=on
