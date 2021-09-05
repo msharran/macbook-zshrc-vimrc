@@ -5,11 +5,12 @@ set wildmenu
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
+
 " autocmd BufEnter * lcd %:p:h " Set current directry as working directory. User Nerd tree toggle to reveal current file.
 
 "Plug Package Manager
 call plug#begin()
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'w0rp/ale'
@@ -65,6 +66,13 @@ set t_Co=256
 set background=dark 
 set laststatus=2
 colorscheme PaperColor
+
+"AutoFormatter
+au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+let g:python3_host_prog="/usr/local/bin/python"
 
 "AirLine
 let g:airline_theme='badwolf'
@@ -123,7 +131,6 @@ map <leader>j :NERDTreeFind<CR>
 " ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_working_path_mode = 'ra'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -180,7 +187,7 @@ set hidden
 set nobackup
 set nowritebackup
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -245,6 +252,7 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
+" Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
@@ -279,6 +287,19 @@ endif
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
+let g:coc_global_extensions = [
+            \'coc-json', 
+            \'coc-git',
+            \'coc-css',
+            \'coc-html',
+            \'coc-solargraph',
+            \'coc-prettier',
+            \'coc-eslint',
+            \'coc-pyright',
+            \'coc-sh',
+            \'coc-yaml'
+            \]
+
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -304,3 +325,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
+autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
+autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>

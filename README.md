@@ -6,6 +6,7 @@
 - Change `Oh my zsh` path in `.zshrc` file
 - Install python3 and mac vim using `brew install python@3.9 && brew install neovim`
 - Install rbenv and install solargraph gem `gem install solargraph`
+- Install pynvim for neo vim autoformatter support `python3 -m pip install pynvim`
 - Commit the changes and push them to ignore local git status 
 
 
