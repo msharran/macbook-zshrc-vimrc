@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set wildmenu
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -8,6 +9,7 @@ let mapleader=" "
 
 "Plug Package Manager
 call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -23,14 +25,12 @@ call plug#end()
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
@@ -125,21 +125,12 @@ map <leader>j :NERDTreeFind<CR>
 " ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_switch_buffer = 'et'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-l>"
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ctrlp_working_path_mode = 'ra'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" let g:go_addtags_transform = "camelcase"
 
 map <C-t><up> :tabr<cr>
 map <C-t><down> :tabl<cr>
@@ -149,15 +140,6 @@ map <C-t>w :W<cr>
 
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
-
-" Python YCM
-let g:ycm_python_interpreter_path = '/usr/local/bin/python3'
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 
 
 " Vim Python
@@ -176,26 +158,6 @@ set showmatch
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
-" ruby
-" Set specific linters
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
-\}
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1 
-let g:airline#extensions#ale#enabled = 1 
-let g:ale_sign_column_always = 1
-
-" Ruby Solargraph
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
-
-" note that if you are using Plug mapping you should not use `noremap` mappings.
-nmap <C-m> <Plug>(lcn-menu)
 " Or map each action separately
 nmap <silent>K <Plug>(lcn-hover)
 nmap <silent> gd <Plug>(lcn-definition)
@@ -204,4 +166,14 @@ nmap <silent> <F2> <Plug>(lcn-rename)
 " Markdown preview
 nmap P <Plug>MarkdownPreviewToggle
 
-nnoremap B :CtrlPBuffer<Enter>
+nnoremap <C-b> :CtrlPBuffer<Enter>
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+" ------- Coc.vim Configs starts here --------
