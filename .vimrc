@@ -126,7 +126,7 @@ set backspace=indent,eol,start
 " NERDTree plugin specific commands
 " :nnoremap <C-g> :NERDTreeToggle<CR>
 map <leader>g :NERDTreeToggle<CR>
-map <leader>j :NERDTreeFind<CR>
+map <leader>h :NERDTreeFind<CR>
 
 " ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
