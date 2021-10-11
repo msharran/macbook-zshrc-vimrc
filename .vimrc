@@ -18,6 +18,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 "Vundle Package Manager
@@ -74,6 +75,7 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 let g:python3_host_prog="/usr/local/bin/python"
 
+
 "AirLine
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1
@@ -122,11 +124,12 @@ autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowHidden=1 " Show hidden files
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set backspace=indent,eol,start
 " NERDTree plugin specific commands
 " :nnoremap <C-g> :NERDTreeToggle<CR>
 map <leader>g :NERDTreeToggle<CR>
-map <leader>h :NERDTreeFind<CR>
+map <leader>r :NERDTreeFind<CR>
 
 " ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -174,7 +177,6 @@ nmap P <Plug>MarkdownPreviewToggle
 nnoremap <C-b> :CtrlPBuffer<Enter>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -201,6 +203,20 @@ if has("nvim-0.5.0") || has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -330,3 +346,16 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
 autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
 autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+
+set statusline^=%{coc#status()}
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+"Clipboard usage in vim
+set clipboard=unnamed
+
+"Helpers Vim
+imap ;pp print()<left>
+imap ;gp fmt.Println()<left>

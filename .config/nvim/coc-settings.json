@@ -1,6 +1,9 @@
 {
+  "coc.preferences.rootPatterns": [".git", ".hg", ".projections.json", ".env", "Pipfile", "pyproject.toml", "Gemfile", "template.yaml", "template.yml", "serverless.yml", "serverless.yaml"],
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.enabled": false,
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",

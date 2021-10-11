@@ -8,6 +8,7 @@ alias dc='docker compose'
 alias d='docker'
 alias tf='terraform'
 alias be='bundle exec'
+alias nv='nvim'
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/shmurali/.oh-my-zsh"
