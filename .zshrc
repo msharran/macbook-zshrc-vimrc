@@ -1,7 +1,13 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-alias goa='cd ~/go/src/goa-user-service'
-alias scat='~/work/supercat_server'
+alias k='kubectl'
 alias flushdns='sudo killall -HUP mDNSResponder'
 alias cloudBeaver='docker run --name cloudbeaver --rm -ti -p 8080:8978 -v /var/cloudbeaver/workspace:/opt/cloudbeaver/workspace dbeaver/cloudbeaver:latest'
 alias dc='docker compose'
@@ -20,30 +26,6 @@ function kns() {
 	kubectl config set-context --current --namespace="$1"
 }
 
-function awsroodat () {
-	export AWS_PROFILE=roodat; 
-}
-
-function awsfayvit () {
-	export AWS_PROFILE=fayvit; 
-}
-
-function awsdefault () {
-	export AWS_PROFILE=default; 
-}
-
-function awsrebecca () {
-	export AWS_PROFILE=rebecca; 
-}
-
-function awssupercat () {
-	export AWS_PROFILE=supercat; 
-}
-
-function awsbond () {
-	export AWS_PROFILE=bondaws; 
-}
-
 kp() {
     echo "killing port with command...\nfuser -k $1/tcp"
     fuser -k $1/tcp
@@ -52,7 +34,7 @@ kp() {
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -149,3 +131,6 @@ export PATH=$PATH:$HOME/bin
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
