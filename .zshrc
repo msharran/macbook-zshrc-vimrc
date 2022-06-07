@@ -2,12 +2,15 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 alias k='kubectl'
+alias kd='open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/'
+alias awsid='aws sts get-caller-identity'
+
 alias flushdns='sudo killall -HUP mDNSResponder'
 alias cloudBeaver='docker run --name cloudbeaver --rm -ti -p 8080:8978 -v /var/cloudbeaver/workspace:/opt/cloudbeaver/workspace dbeaver/cloudbeaver:latest'
 alias dc='docker compose'
@@ -22,8 +25,47 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GO111MODULE=on
 
+tweb() {
+    open "https://$1.freshworkscorp.com"
+}
+
+tssh() {
+    ssh-add -q ~/.ssh/teleport-super-admin
+    ssh -A ec2-user@$1.freshworkscorp.com
+}
+
+tauth() {
+    ssh-add -q ~/.ssh/teleport-super-admin
+    ssh -o StrictHostKeyChecking=no -J ec2-user@$1.freshworkscorp.com ec2-user@auth.$1.freshworkscorp.com
+}
+
+tlogin() {
+    tsh login --proxy=$1.freshworkscorp.com:443 --auth freshworks
+}
+
+tshexit(){
+    tsh logout
+    rm -rf ~/.tsh
+}
+
+awslogin() {
+    set -x
+    aws-azure-login --no-prompt --profile $1
+    export AWS_PROFILE=$1
+}
+
+assume_role() {
+    echo "Assuming role $1"
+    export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
+        $(aws sts assume-role \
+            --role-arn $1 \
+            --role-session-name MySessionName \
+            --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
+    --output text))
+}
+
 function kns() {
-	kubectl config set-context --current --namespace="$1"
+    kubectl config set-context --current --namespace="$1"
 }
 
 kp() {
@@ -96,7 +138,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git kubectl zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,3 +176,11 @@ export PATH=$PATH:$HOME/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(rbenv init - zsh)"
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)
+compdef __start_kubectl k
